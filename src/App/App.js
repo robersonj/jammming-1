@@ -1,14 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './App.css';
+import SearchBar from '../components/SearchBar/SearchBar';
+import AppPlayList from '../components/AppPlayList/AppPlayList';
+import PlayList from '../components/PlayList/PlayList';
 
-function App(props) {
+function App() {
   return (
-    <div>{props.message}</div>
+    <div>
+      <SearchBar />
+      <AppPlayList />
+      <PlayList />
+    </div>
   );
 }
-App.propTypes = {
-  message: PropTypes.string.isRequired,
-};
 
 export default App;
