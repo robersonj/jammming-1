@@ -11,8 +11,10 @@ describe('App', () => {
     const wrapper = shallow(<App />);
     expect(wrapper.containsAllMatchingElements([
       <SearchBar />,
-      <div><SearchResults /></div>,
-      <PlayList />,
+      <div>
+        <SearchResults />
+        <PlayList />
+      </div>,
     ])).to.equal(true);
   });
 });

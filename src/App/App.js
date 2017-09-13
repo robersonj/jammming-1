@@ -10,8 +10,8 @@ function App() {
       <SearchBar />
       <div className="App-playlist">
         <SearchResults />
+        <PlayList />
       </div>
-      <PlayList />
     </div>
   );
 }

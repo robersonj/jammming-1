@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import SearchBar from '../../../src/components/SearchBar/SearchBar';
+import SearchBar from '../../src/components/SearchBar/SearchBar';
 
 describe('SearchBar', () => {
   it('should render an input and a button', () => {

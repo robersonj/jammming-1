@@ -1,10 +1,10 @@
 import React from 'react';
-import './App.css';
+import './TrackList.css';
 
-function App() {
+function TrackList() {
   return (
-    <div>Up and running!</div>
+    <div>TrackList</div>
   );
 }
 
-export default App;
+export default TrackList;
