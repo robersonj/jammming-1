@@ -1,0 +1,16 @@
+{
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true,
+  },
+  "plugins": [
+        "chai-friendly"
+  ],
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "no-unused-expressions": 0,
+    "chai-friendly/no-unused-expressions": 2
+  }
+}
