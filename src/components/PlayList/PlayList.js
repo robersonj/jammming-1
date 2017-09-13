@@ -1,9 +1,8 @@
 import React from 'react';
+import './PlayList.css';
 
 function PlayList() {
-  return (
-    <div>PlayList</div>
-  );
+  return <div className="Playlist">PlayList</div>;
 }
 
 export default PlayList;

@@ -1,10 +1,8 @@
 import React from 'react';
-import './App.css';
+import './SearchResults.css';
 
-function App() {
-  return (
-    <div>Up and running!</div>
-  );
+function SearchResults() {
+  return <div className="SearchResults">SearchResults</div>;
 }
 
-export default App;
+export default SearchResults;

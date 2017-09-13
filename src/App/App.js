@@ -1,14 +1,16 @@
 import React from 'react';
 import './App.css';
 import SearchBar from '../components/SearchBar/SearchBar';
-import AppPlayList from '../components/AppPlayList/AppPlayList';
+import SearchResults from '../components/SearchResults/SearchResults';
 import PlayList from '../components/PlayList/PlayList';
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <SearchBar />
-      <AppPlayList />
+      <div className="App-playlist">
+        <SearchResults />
+      </div>
       <PlayList />
     </div>
   );
