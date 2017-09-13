@@ -13,7 +13,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "mocha --require ./test/setup.js ./test/**/*.spec.js",
+    "test": "mocha --require ignore-styles ./test/setup.js ./test/**/*.spec.js",
     "tdd": "npm test -- --watch",
     "eject": "react-scripts eject"
   },
@@ -25,6 +25,7 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.3.0",
+    "ignore-styles": "^5.0.1",
     "sinon": "^3.2.1"
   }
 }
