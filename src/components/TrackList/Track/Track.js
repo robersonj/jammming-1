@@ -1,10 +1,16 @@
 import React from 'react';
-import './App.css';
+import './Track.css';
 
-function App() {
+function Track() {
   return (
-    <div>Up and running!</div>
+    <li className="Track">
+      <div className="Track-information">
+        <h3>Tiny Dancer</h3>
+        <p>Elton John | Madman Across The Water</p>
+      </div>
+      <a className="Track-action">+</a>
+    </li>
   );
 }
 
-export default App;
+export default Track;
