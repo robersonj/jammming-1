@@ -7,8 +7,6 @@ import TrackList from '../../src/components/TrackList/TrackList';
 describe('SearchResults', () => {
   it('should render a TrackList', () => {
     const wrapper = shallow(<SearchResults />);
-    expect(wrapper.containsAllMatchingElements([
-      <TrackList />,
-    ])).to.equal(true);
+    expect(wrapper.containsMatchingElement(<TrackList />)).to.equal(true);
   });
 });

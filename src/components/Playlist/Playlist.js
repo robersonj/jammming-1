@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './PlayList.css';
+import './Playlist.css';
 import TrackList from '../../components/TrackList/TrackList';
 
-function PlayList({ title, tracks }) {
+function Playlist({ title, tracks }) {
   const action = {
     symbol: '-',
   };
@@ -15,11 +15,11 @@ function PlayList({ title, tracks }) {
     </div>
   );
 }
-PlayList.propTypes = {
+Playlist.propTypes = {
   title: PropTypes.string,
   tracks: TrackList.propTypes.tracks.isRequired,
 };
-PlayList.defaultProps = {
+Playlist.defaultProps = {
   title: 'New PlayList',
 };
-export default PlayList;
+export default Playlist;

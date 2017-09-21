@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import SearchBar from '../components/SearchBar/SearchBar';
 import SearchResults from '../components/SearchResults/SearchResults';
-import PlayList from '../components/PlayList/PlayList';
+import Playlist from '../components/Playlist/Playlist';
 
 function App() {
   const info = {
@@ -17,7 +17,7 @@ function App() {
       <SearchBar />
       <div className="App-playlist">
         <SearchResults tracks={tracks} />
-        <PlayList title={playListTitle} tracks={tracks} />
+        <Playlist title={playListTitle} tracks={tracks} />
       </div>
     </div>
   );
