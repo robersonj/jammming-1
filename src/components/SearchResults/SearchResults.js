@@ -1,10 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './SearchResults.css';
 import TrackList from '../TrackList/TrackList';
 
-function SearchResults({ tracks }) {
+function SearchResults({ tracks, onAddTrack }) {
   const action = {
     symbol: '+',
+    func: onAddTrack,
   };
   return (
     <div className="SearchResults">
@@ -15,6 +17,7 @@ function SearchResults({ tracks }) {
 }
 SearchResults.propTypes = {
   tracks: TrackList.propTypes.tracks.isRequired,
+  onAddTrack: PropTypes.func.isRequired,
 };
 
 export default SearchResults;
