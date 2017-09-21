@@ -2,19 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Track.css';
 
-function Track({ info, action }) {
+function Track({ track, action }) {
   return (
-    <li className="Track" key={info.id}>
+    <li className="Track" key={track.id}>
       <div className="Track-information">
-        <h3>{info.title}</h3>
-        <p>{info.artist} | {info.album}</p>
+        <h3>{track.title}</h3>
+        <p>{track.artist} | {track.album}</p>
       </div>
       <a className="Track-action">{action.symbol}</a>
     </li>
   );
 }
 Track.propTypes = {
-  info: PropTypes.shape({
+  track: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     artist: PropTypes.string.isRequired,
