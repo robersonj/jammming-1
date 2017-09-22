@@ -85,4 +85,25 @@ describe('App', () => {
     playlist.prop('onRemoveTrack')(anotherSampleTrack2);
     expect(wrapper.state('playlist')).to.eql([sampleTrack]);
   });
+  it('starts with a default playlist title', () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.state('playlistTitle').length > 0).to.equal(true);
+  });
+  it('changes the title', () => {
+    const wrapper = shallow(<App />);
+    wrapper.instance().setPlaylistTitle('Changed');
+    expect(wrapper.state('playlistTitle')).to.equal('Changed');
+  });
+  it('passes changePlaylistTitle to Playlist', () => {
+    const wrapper = shallow(<App />);
+    const playlist = wrapper.find(Playlist);
+    const changeTitle = wrapper.instance().setPlaylistTitle;
+    expect(playlist.prop('onTitleChange')).to.eql(changeTitle);
+  });
+  it('passes a bound changePlaylitTitle function to Playlist', () => {
+    const wrapper = shallow(<App />);
+    const playlist = wrapper.find(Playlist);
+    playlist.prop('onTitleChange')('Changed');
+    expect(wrapper.state('playlistTitle')).to.eql('Changed');
+  });
 });

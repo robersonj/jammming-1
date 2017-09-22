@@ -3,25 +3,33 @@ import PropTypes from 'prop-types';
 import './Playlist.css';
 import TrackList from '../../components/TrackList/TrackList';
 
-function Playlist({ title, tracks, onRemoveTrack }) {
-  const action = {
-    symbol: '-',
-    func: onRemoveTrack,
-  };
-  return (
-    <div className="Playlist">
-      <input value={title} />
-      <TrackList tracks={tracks} action={action} />
-      <a className="Playlist-save" >SAVE TO SPOTIFY</a>
-    </div>
-  );
+class Playlist extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleTitleChange = this.handleTitleChange.bind(this);
+  }
+  handleTitleChange(event) {
+    this.props.onTitleChange(event.target.value);
+  }
+  render() {
+    const action = {
+      symbol: '-',
+      func: this.props.onRemoveTrack,
+    };
+    return (
+      <div className="Playlist">
+        <input value={this.props.title} onChange={this.handleTitleChange} />
+        <TrackList tracks={this.props.tracks} action={action} />
+        <a className="Playlist-save" >SAVE TO SPOTIFY</a>
+      </div>
+    );
+  }
 }
 Playlist.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   tracks: TrackList.propTypes.tracks.isRequired,
   onRemoveTrack: PropTypes.func.isRequired,
+  onTitleChange: PropTypes.func.isRequired,
 };
-Playlist.defaultProps = {
-  title: 'New PlayList',
-};
+
 export default Playlist;

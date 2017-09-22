@@ -9,10 +9,17 @@ class App extends React.Component {
     super(props);
     this.state = {
       searchResults: [],
+      playlistTitle: 'Enter title',
       playlist: [],
     };
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
+    this.setPlaylistTitle = this.setPlaylistTitle.bind(this);
+  }
+  setPlaylistTitle(title) {
+    this.setState({
+      playlistTitle: title,
+    });
   }
   addTrack(track) {
     const notInPlaylist = this.state.playlist.every(playlistTrack =>
@@ -44,7 +51,6 @@ class App extends React.Component {
       album: 'Ten Summoner&apos;s Tales',
     };
     const tracks = [sampleTrack, anotherSampleTrack];
-    const playListTitle = 'My Playlist';
     return (
       <div className="App">
         <SearchBar />
@@ -54,9 +60,10 @@ class App extends React.Component {
             onAddTrack={this.addTrack}
           />
           <Playlist
-            title={playListTitle}
+            title={this.state.playlistTitle}
             tracks={this.state.playlist}
             onRemoveTrack={this.removeTrack}
+            onTitleChange={this.setPlaylistTitle}
           />
         </div>
       </div>
