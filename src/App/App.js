@@ -12,26 +12,48 @@ class App extends React.Component {
       playlist: [],
     };
     this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
   }
   addTrack(track) {
     this.setState({
       playlist: this.state.playlist.concat([track]),
     });
   }
+  removeTrack(track) {
+    this.setState({
+      playlist: this.state.playlist.filter(playlistTrack =>
+        playlistTrack.id !== track.id,
+      ),
+    });
+  }
   render() {
-    const info = {
+    const sampleTrack = {
+      id: '123',
       title: 'Tiny Dancer',
       artist: 'Elton John',
       album: 'Madman Across The Water',
     };
-    const tracks = [info, info, info];
+    const anotherSampleTrack = {
+      id: 'abc',
+      title: 'Fields of Gold',
+      artist: 'Sting',
+      album: 'Ten Summoner&apos;s Tales',
+    };
+    const tracks = [sampleTrack, anotherSampleTrack];
     const playListTitle = 'My Playlist';
     return (
       <div className="App">
         <SearchBar />
         <div className="App-playlist">
-          <SearchResults tracks={tracks} onAddTrack={this.addTrack} />
-          <Playlist title={playListTitle} tracks={this.state.playlist} />
+          <SearchResults
+            tracks={tracks}
+            onAddTrack={this.addTrack}
+          />
+          <Playlist
+            title={playListTitle}
+            tracks={this.state.playlist}
+            onRemoveTrack={this.removeTrack}
+          />
         </div>
       </div>
     );

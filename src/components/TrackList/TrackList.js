@@ -6,13 +6,9 @@ import './TrackList.css';
 function TrackList({ tracks, action }) {
   return (
     <ul className="TrackList">
-      {tracks.map((item, index) => {
-        const info = item;
-        info.id = `${index}`;
-        return (
-          <Track track={info} action={action} />
-        );
-      })
+      {tracks.map(track =>
+        <Track track={track} action={action} />,
+      )
       }
     </ul>
   );

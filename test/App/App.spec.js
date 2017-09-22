@@ -4,7 +4,26 @@ import { shallow } from 'enzyme';
 import App from '../../src/App/App';
 import SearchBar from '../../src/components/SearchBar/SearchBar';
 import SearchResults from '../../src/components/SearchResults/SearchResults';
-// import Playlist from '../../src/components/Playlist/Playlist';
+import Playlist from '../../src/components/Playlist/Playlist';
+
+const sampleTrack = {
+  id: '123',
+  title: 'Tiny Dancer',
+  artist: 'Elton John',
+  album: 'Madman Across The Water',
+};
+const anotherSampleTrack1 = {
+  id: 'abc',
+  title: 'Fields of Gold',
+  artist: 'Sting',
+  album: 'Ten Summoner&apos;s Tales',
+};
+const anotherSampleTrack2 = {
+  id: 'abc',
+  title: 'Fields of Gold',
+  artist: 'Sting',
+  album: 'Ten Summoner&apos;s Tales',
+};
 
 describe('App', () => {
   it('should render SearchBar, SearchResults and Playlist', () => {
@@ -22,15 +41,10 @@ describe('App', () => {
     const wrapper = shallow(<App />);
     expect(wrapper.state('playlist')).to.eql([]);
   });
-  it('adds items to the playlist', () => {
+  it('adds tracks to the playlist', () => {
     const wrapper = shallow(<App />);
-    const track = {
-      title: 'Tiny Dancer',
-      artist: 'Elton John',
-      album: 'Madman Across The Water',
-    };
-    wrapper.instance().addTrack(track);
-    expect(wrapper.state('playlist')).to.eql([track]);
+    wrapper.instance().addTrack(sampleTrack);
+    expect(wrapper.state('playlist')).to.eql([sampleTrack]);
   });
   it('passes addTrack to SearchResults', () => {
     const wrapper = shallow(<App />);
@@ -38,15 +52,31 @@ describe('App', () => {
     const addTrack = wrapper.instance().addTrack;
     expect(searchResults.prop('onAddTrack')).to.eql(addTrack);
   });
-  it('passes a bound addItem function to InputArea', () => {
+  it('passes a bound addTrack function to SearchResults', () => {
     const wrapper = shallow(<App />);
     const searchResults = wrapper.find(SearchResults);
-    const track = {
-      title: 'Tiny Dancer',
-      artist: 'Elton John',
-      album: 'Madman Across The Water',
-    };
-    searchResults.prop('onAddTrack')(track);
-    expect(wrapper.state('playlist')).to.eql([track]);
+    searchResults.prop('onAddTrack')(sampleTrack);
+    expect(wrapper.state('playlist')).to.eql([sampleTrack]);
+  });
+  it('removes tracks from the playlist', () => {
+    const wrapper = shallow(<App />);
+    wrapper.instance().addTrack(sampleTrack);
+    wrapper.instance().addTrack(anotherSampleTrack1);
+    wrapper.instance().removeTrack(anotherSampleTrack2);
+    expect(wrapper.state('playlist')).to.eql([sampleTrack]);
+  });
+  it('passes removeTrack to Playlist', () => {
+    const wrapper = shallow(<App />);
+    const playlist = wrapper.find(Playlist);
+    const removeTrack = wrapper.instance().removeTrack;
+    expect(playlist.prop('onRemoveTrack')).to.eql(removeTrack);
+  });
+  it('passes a bound removeTrack function to Playlist', () => {
+    const wrapper = shallow(<App />);
+    const playlist = wrapper.find(Playlist);
+    wrapper.instance().addTrack(sampleTrack);
+    wrapper.instance().addTrack(anotherSampleTrack1);
+    playlist.prop('onRemoveTrack')(anotherSampleTrack2);
+    expect(wrapper.state('playlist')).to.eql([sampleTrack]);
   });
 });
