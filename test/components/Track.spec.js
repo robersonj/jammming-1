@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import { match, spy } from 'sinon';
+import { spy } from 'sinon';
 import Track from '../../src/components/TrackList/Track/Track';
 
 const sampleTrack = {

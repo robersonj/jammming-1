@@ -46,6 +46,12 @@ describe('App', () => {
     wrapper.instance().addTrack(sampleTrack);
     expect(wrapper.state('playlist')).to.eql([sampleTrack]);
   });
+  it('does not add a track to the playlist if it is already there', () => {
+    const wrapper = shallow(<App />);
+    wrapper.instance().addTrack(sampleTrack);
+    wrapper.instance().addTrack(sampleTrack);
+    expect(wrapper.state('playlist')).to.eql([sampleTrack]);
+  });
   it('passes addTrack to SearchResults', () => {
     const wrapper = shallow(<App />);
     const searchResults = wrapper.find(SearchResults);

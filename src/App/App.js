@@ -15,9 +15,13 @@ class App extends React.Component {
     this.removeTrack = this.removeTrack.bind(this);
   }
   addTrack(track) {
-    this.setState({
-      playlist: this.state.playlist.concat([track]),
-    });
+    const notInPlaylist = this.state.playlist.every(playlistTrack =>
+      playlistTrack.id !== track.id);
+    if (notInPlaylist) {
+      this.setState({
+        playlist: this.state.playlist.concat([track]),
+      });
+    }
   }
   removeTrack(track) {
     this.setState({
