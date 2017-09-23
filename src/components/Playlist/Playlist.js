@@ -21,7 +21,7 @@ class Playlist extends React.Component {
       <div className="Playlist">
         <input value={this.props.title} onChange={this.handleTitleChange} />
         <TrackList tracks={this.props.tracks} action={action} />
-        <a className="Playlist-save" >SAVE TO SPOTIFY</a>
+        <button className="Playlist-save" onClick={this.props.onSave} >SAVE TO SPOTIFY</button>
       </div>
     );
   }
@@ -31,6 +31,7 @@ Playlist.propTypes = {
   tracks: PropTypes.arrayOf(Track.propTypes.track).isRequired,
   onRemoveTrack: PropTypes.func.isRequired,
   onTitleChange: PropTypes.func.isRequired,
+  onSave: PropTypes.func.isRequired,
 };
 
 export default Playlist;

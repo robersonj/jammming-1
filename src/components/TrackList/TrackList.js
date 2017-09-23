@@ -7,7 +7,7 @@ function TrackList({ tracks, action }) {
   return (
     <ul className="TrackList">
       {tracks.map(track =>
-        <Track track={track} action={action} />,
+        <Track key={track.id} track={track} action={action} />,
       )
       }
     </ul>

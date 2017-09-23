@@ -11,7 +11,7 @@ describe('Playlist', () => {
     expect(wrapper.containsAllMatchingElements([
       <input />,
       <TrackList />,
-      <a>SAVE TO SPOTIFY</a>,
+      <button>SAVE TO SPOTIFY</button>,
     ])).to.equal(true);
   });
   it('should render the input with props.title', () => {
@@ -29,5 +29,21 @@ describe('Playlist', () => {
     input.simulate('change', { target: {} });
 
     expect(titleSpy.calledOnce).to.equal(true);
+  });
+  it('should call onSave when save button is clicked', () => {
+    const saveSpy = spy();
+    const wrapper = shallow(
+      <Playlist
+        title=""
+        tracks={[]}
+        onRemoveTrack={() => {}}
+        onTitleChange={() => {}}
+        onSave={saveSpy}
+      />);
+    const button = wrapper.find('button');
+
+    button.simulate('click', { target: {} });
+
+    expect(saveSpy.calledOnce).to.equal(true);
   });
 });

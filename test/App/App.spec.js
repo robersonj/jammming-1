@@ -138,4 +138,10 @@ describe('App', () => {
   //   searchbar.prop('onSearch')();
   //   expect(wrapper.state('searchTerm')).to.eql('Enter A Song Title');
   // });
+  it('passes save to Playlist', () => {
+    const wrapper = shallow(<App />);
+    const playlist = wrapper.find(Playlist);
+    const save = wrapper.instance().save;
+    expect(playlist.prop('onSave')).to.eql(save);
+  });
 });

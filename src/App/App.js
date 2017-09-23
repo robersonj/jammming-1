@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchTerm: 'Enter A Song Title',
+      searchTerm: 'Search for a song, album or artist',
       searchResults: [],
       playlistTitle: 'Enter title',
       playlist: [],
@@ -19,6 +19,7 @@ class App extends React.Component {
     this.setPlaylistTitle = this.setPlaylistTitle.bind(this);
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
+    this.save = this.save.bind(this);
   }
   setSearchTerm(term) {
     this.setState({
@@ -34,11 +35,22 @@ class App extends React.Component {
     Spotify.search(this.state.searchTerm).then(
       (result) => {
         this.setState({
-          searchTerm: 'Enter A Song Title',
+          searchTerm: 'Search for a song, album or artist',
           searchResults: result,
         });
       },
     );
+  }
+  save() {
+    Spotify.save(this.state.playlistTitle, this.state.playlist);
+    // .then(
+    //   () => {
+    //     this.setState({
+    //       playlistTitle: 'Enter Title',
+    //       playlist: [],
+    //     });
+    // },
+    // );
   }
   addTrack(track) {
     const notInPlaylist = this.state.playlist.every(playlistTrack =>
@@ -74,6 +86,7 @@ class App extends React.Component {
             tracks={this.state.playlist}
             onRemoveTrack={this.removeTrack}
             onTitleChange={this.setPlaylistTitle}
+            onSave={this.save}
           />
         </div>
       </div>
