@@ -24,14 +24,12 @@ const anotherSampleTrack2 = {
   artist: 'Sting',
   album: 'Ten Summoner&apos;s Tales',
 };
-
 describe('App', () => {
   it('should render SearchBar, SearchResults and Playlist', () => {
     const wrapper = shallow(<App />);
     expect(wrapper.containsMatchingElement(<SearchBar />), 'SearchBar').to.equal(true);
     expect(wrapper.containsMatchingElement(<SearchResults />)).to.equal(true);
-    // I don't understand why this ABSOLUTELY parallel test fails :(
-    // expect(wrapper.containsMatchingElement(<Playlist />)).to.equal(true);
+    expect(wrapper.containsMatchingElement(<Playlist />)).to.equal(true);
   });
   it('should start with an empty playlist', () => {
     const wrapper = shallow(<App />);
@@ -104,7 +102,7 @@ describe('App', () => {
     const wrapper = shallow(<App />);
     const playlist = wrapper.find(Playlist);
     playlist.prop('onTitleChange')('Changed');
-    expect(wrapper.state('playlistTitle')).to.eql('Changed');
+    expect(wrapper.state('playlistTitle')).to.equal('Changed');
   });
   it('starts with a default search term', () => {
     const wrapper = shallow(<App />);
@@ -119,7 +117,7 @@ describe('App', () => {
     const wrapper = shallow(<App />);
     const searchbar = wrapper.find(SearchBar);
     const changeTerm = wrapper.instance().setSearchTerm;
-    expect(searchbar.prop('onTermChange')).to.eql(changeTerm);
+    expect(searchbar.prop('onTermChange')).to.equal(changeTerm);
   });
   it('passes a bound setSearchTerm function to SearchBar', () => {
     const wrapper = shallow(<App />);
@@ -132,5 +130,11 @@ describe('App', () => {
     const searchbar = wrapper.find(SearchBar);
     const search = wrapper.instance().search;
     expect(searchbar.prop('onSearch')).to.eql(search);
+  });
+  it('passes a bound search function to SearchBar', () => {
+    const wrapper = shallow(<App />);
+    const searchbar = wrapper.find(SearchBar);
+    searchbar.prop('onSearch')();
+    expect(wrapper.state('searchTerm')).to.eql('Enter A Song Title');
   });
 });

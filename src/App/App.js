@@ -31,7 +31,10 @@ class App extends React.Component {
     });
   }
   search() {
-    Spotify.search(this.state.searchTerm);
+    this.setState({
+      searchTerm: 'Enter A Song Title',
+      searchResults: Spotify.search(this.state.searchTerm),
+    });
   }
   addTrack(track) {
     const notInPlaylist = this.state.playlist.every(playlistTrack =>
@@ -50,19 +53,6 @@ class App extends React.Component {
     });
   }
   render() {
-    const sampleTrack = {
-      id: '123',
-      title: 'Tiny Dancer',
-      artist: 'Elton John',
-      album: 'Madman Across The Water',
-    };
-    const anotherSampleTrack = {
-      id: 'abc',
-      title: 'Fields of Gold',
-      artist: 'Sting',
-      album: 'Ten Summoner&apos;s Tales',
-    };
-    const tracks = [sampleTrack, anotherSampleTrack];
     return (
       <div className="App">
         <SearchBar
@@ -72,7 +62,7 @@ class App extends React.Component {
         />
         <div className="App-playlist">
           <SearchResults
-            tracks={tracks}
+            tracks={this.state.searchResults}
             onAddTrack={this.addTrack}
           />
           <Playlist
