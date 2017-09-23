@@ -3,23 +3,35 @@ import './App.css';
 import SearchBar from '../components/SearchBar/SearchBar';
 import SearchResults from '../components/SearchResults/SearchResults';
 import Playlist from '../components/Playlist/Playlist';
+import Spotify from '../util/Spotify';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      searchTerm: 'Enter A Song Title',
       searchResults: [],
       playlistTitle: 'Enter title',
       playlist: [],
     };
+    this.setSearchTerm = this.setSearchTerm.bind(this);
+    this.search = this.search.bind(this);
+    this.setPlaylistTitle = this.setPlaylistTitle.bind(this);
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
-    this.setPlaylistTitle = this.setPlaylistTitle.bind(this);
+  }
+  setSearchTerm(term) {
+    this.setState({
+      searchTerm: term,
+    });
   }
   setPlaylistTitle(title) {
     this.setState({
       playlistTitle: title,
     });
+  }
+  search() {
+    Spotify.search(this.state.searchTerm);
   }
   addTrack(track) {
     const notInPlaylist = this.state.playlist.every(playlistTrack =>
@@ -53,7 +65,11 @@ class App extends React.Component {
     const tracks = [sampleTrack, anotherSampleTrack];
     return (
       <div className="App">
-        <SearchBar />
+        <SearchBar
+          term={this.state.searchTerm}
+          onTermChange={this.setSearchTerm}
+          onSearch={this.search}
+        />
         <div className="App-playlist">
           <SearchResults
             tracks={tracks}

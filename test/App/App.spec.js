@@ -28,7 +28,7 @@ const anotherSampleTrack2 = {
 describe('App', () => {
   it('should render SearchBar, SearchResults and Playlist', () => {
     const wrapper = shallow(<App />);
-    expect(wrapper.contains(<SearchBar />), 'SearchBar').to.equal(true);
+    expect(wrapper.containsMatchingElement(<SearchBar />), 'SearchBar').to.equal(true);
     expect(wrapper.containsMatchingElement(<SearchResults />)).to.equal(true);
     // I don't understand why this ABSOLUTELY parallel test fails :(
     // expect(wrapper.containsMatchingElement(<Playlist />)).to.equal(true);
@@ -94,7 +94,7 @@ describe('App', () => {
     wrapper.instance().setPlaylistTitle('Changed');
     expect(wrapper.state('playlistTitle')).to.equal('Changed');
   });
-  it('passes changePlaylistTitle to Playlist', () => {
+  it('passes setPlaylistTitle to Playlist', () => {
     const wrapper = shallow(<App />);
     const playlist = wrapper.find(Playlist);
     const changeTitle = wrapper.instance().setPlaylistTitle;
@@ -105,5 +105,32 @@ describe('App', () => {
     const playlist = wrapper.find(Playlist);
     playlist.prop('onTitleChange')('Changed');
     expect(wrapper.state('playlistTitle')).to.eql('Changed');
+  });
+  it('starts with a default search term', () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.state('searchTerm').length > 0).to.equal(true);
+  });
+  it('changes the term', () => {
+    const wrapper = shallow(<App />);
+    wrapper.instance().setSearchTerm('Changed');
+    expect(wrapper.state('searchTerm')).to.equal('Changed');
+  });
+  it('passes setSearchTerm to SearchBar', () => {
+    const wrapper = shallow(<App />);
+    const searchbar = wrapper.find(SearchBar);
+    const changeTerm = wrapper.instance().setSearchTerm;
+    expect(searchbar.prop('onTermChange')).to.eql(changeTerm);
+  });
+  it('passes a bound setSearchTerm function to SearchBar', () => {
+    const wrapper = shallow(<App />);
+    const searchbar = wrapper.find(SearchBar);
+    searchbar.prop('onTermChange')('Changed');
+    expect(wrapper.state('searchTerm')).to.eql('Changed');
+  });
+  it('passes search to SearchBar', () => {
+    const wrapper = shallow(<App />);
+    const searchbar = wrapper.find(SearchBar);
+    const search = wrapper.instance().search;
+    expect(searchbar.prop('onSearch')).to.eql(search);
   });
 });
