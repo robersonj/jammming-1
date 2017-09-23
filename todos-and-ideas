@@ -1,0 +1,8 @@
+- start with clean url?
+- message box for error messages
+- error handling for getAccessToken
+- manchmal bad gateway error - why?
+- adjust css for buttons
+- hook up 'save to spotify' button
+- tests for passing ths right props ?!
+- 'fetch is not defined' (not supported by mocha/chai/enzyme?)

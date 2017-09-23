@@ -15,6 +15,9 @@ function TrackList({ tracks, action }) {
 }
 TrackList.propTypes = {
   tracks: PropTypes.arrayOf(Track.propTypes.track).isRequired,
-  action: Track.propTypes.action.isRequired,
+  action: PropTypes.shape({
+    symbol: PropTypes.string.isRequired,
+    func: PropTypes.func.isRequired,
+  }).isRequired,
 };
 export default TrackList;

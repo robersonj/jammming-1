@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './SearchResults.css';
 import TrackList from '../TrackList/TrackList';
+import Track from '../TrackList/Track/Track';
 
 function SearchResults({ tracks, onAddTrack }) {
   const action = {
@@ -16,7 +17,7 @@ function SearchResults({ tracks, onAddTrack }) {
   );
 }
 SearchResults.propTypes = {
-  tracks: TrackList.propTypes.tracks.isRequired,
+  tracks: PropTypes.arrayOf(Track.propTypes.track).isRequired,
   onAddTrack: PropTypes.func.isRequired,
 };
 

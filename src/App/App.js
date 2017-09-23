@@ -31,10 +31,14 @@ class App extends React.Component {
     });
   }
   search() {
-    this.setState({
-      searchTerm: 'Enter A Song Title',
-      searchResults: Spotify.search(this.state.searchTerm),
-    });
+    Spotify.search(this.state.searchTerm).then(
+      (result) => {
+        this.setState({
+          searchTerm: 'Enter A Song Title',
+          searchResults: result,
+        });
+      },
+    );
   }
   addTrack(track) {
     const notInPlaylist = this.state.playlist.every(playlistTrack =>

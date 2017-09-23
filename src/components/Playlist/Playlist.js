@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Playlist.css';
 import TrackList from '../../components/TrackList/TrackList';
+import Track from '../TrackList/Track/Track';
 
 class Playlist extends React.Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class Playlist extends React.Component {
 }
 Playlist.propTypes = {
   title: PropTypes.string.isRequired,
-  tracks: TrackList.propTypes.tracks.isRequired,
+  tracks: PropTypes.arrayOf(Track.propTypes.track).isRequired,
   onRemoveTrack: PropTypes.func.isRequired,
   onTitleChange: PropTypes.func.isRequired,
 };
