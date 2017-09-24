@@ -1,11 +1,13 @@
-- start with clean url?
+- better error handling for requests
+- testing Spotify.js - How?
+- how to always start with clean url?
 - search box with placeholder instead of text?
 - message box for error messages
 - error handling for getAccessToken
-- manchmal bad gateway error - why?
+- sometimes bad gateway error - why?
 - adjust css for buttons
-- hook up 'save to spotify' button
-- tests for passing ths right props ?!
-- 'fetch is not defined' (not supported by mocha/chai/enzyme?)
+- tests for passing the right props ?!
+- in test suite 'fetch is not defined' (not supported by mocha/chai/enzyme?)
 - refactor : sort methods and tests/ add comments
 - add pagination
+- refactor variable names to reflect the spotify api more closely?
