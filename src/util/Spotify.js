@@ -24,6 +24,36 @@ const Spotify = {
       }
     }
   },
+
+  getUserId() {
+    if (userId) {
+      return new Promise(
+        resolve => resolve(userId),
+      );
+    }
+    const getUserNameUrl = `${apiBaseUrl}/me`;
+    return fetch(getUserNameUrl, {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    }).then(
+      (response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        console.log('Request failed: userId not obtained');
+        return '';
+      },
+    ).then(
+      (jsonResponse) => {
+        if (jsonResponse.id) {
+          userId = jsonResponse.id;
+          return jsonResponse.id;
+        }
+        console.log('received bad format');
+        return '';
+      },
+    );
+  },
+
   search(term) {
     Spotify.getAccessToken();
     const fetchUrl = `${apiBaseUrl}/search?type=track&q=${term}`;
@@ -55,8 +85,8 @@ const Spotify = {
       },
     );
   },
-  createPlaylist(id, title, uriList) {
-    userId = id;
+
+  createPlaylist(title, uriList) {
     const createPlaylistUrl = `${apiBaseUrl}/users/${userId}/playlists`;
     return fetch(createPlaylistUrl, {
       method: 'POST',
@@ -91,33 +121,15 @@ const Spotify = {
       },
     );
   },
+
   save(title, tracks) {
     Spotify.getAccessToken();
     const uriList = tracks.map(
       track => track.uri,
     );
-    const getUserNameUrl = `${apiBaseUrl}/me`;
-    fetch(getUserNameUrl, {
-      headers: { Authorization: `Bearer ${accessToken}` },
-    }).then(
-      (response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        console.log('Request failed!');
-        return '';
-      },
-    ).then(
-      (jsonResponse) => {
-        if (jsonResponse.id) {
-          return jsonResponse.id;
-        }
-        console.log('received bad format');
-        return '';
-      },
-    ).then(
-      (id) => {
-        Spotify.createPlaylist(id, title, uriList);
+    Spotify.getUserId().then(
+      () => {
+        Spotify.createPlaylist(title, uriList);
       },
     );
   },
