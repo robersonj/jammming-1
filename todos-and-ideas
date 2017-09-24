@@ -1,13 +1,25 @@
-- better error handling for requests
-- testing Spotify.js - How?
-- how to always start with clean url?
-- search box with placeholder instead of text?
-- message box for error messages
-- error handling for getAccessToken
-- sometimes bad gateway error - why?
+Specification:
 - adjust css for buttons
-- tests for passing the right props ?!
-- in test suite 'fetch is not defined' (not supported by mocha/chai/enzyme?)
-- refactor : sort methods and tests/ add comments
+
+UX:
+- message box for errors and success messages
 - add pagination
+- search box with placeholder instead of text
+- always start with clean url when using npm start
+
+Error handling:
+- better error handling for requests
+- error handling for getAccessToken
+
+Testing:
+- tests for passing the right props
+- in test suite 'fetch is not defined' (not supported by mocha/chai/enzyme?)
+- testing Spotify.js - How?
+
+Refactor:
+- sort methods and tests/ add comments
 - refactor variable names to reflect the spotify api more closely?
+- refactor to use event delegation
+
+Misc:
+- sometimes bad gateway error - why?
