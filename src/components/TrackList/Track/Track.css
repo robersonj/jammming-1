@@ -16,6 +16,11 @@
   color: rgba(265, 265, 265, .5);
 }
 
+.Track-album-cover {
+  margin-right: 8px;
+  margin-left: -5px;
+}
+
 .Track-information {
   flex-grow: 1;
   display: flex;

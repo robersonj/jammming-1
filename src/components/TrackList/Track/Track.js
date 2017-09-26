@@ -13,6 +13,7 @@ class Track extends React.Component {
   render() {
     return (
       <li className="Track" key={this.props.track.id}>
+        <img className="Track-album-cover" src={this.props.track.cover} alt="album cover"/>
         <div className="Track-information">
           <h3>{this.props.track.title}</h3>
           <p>{this.props.track.artist} | {this.props.track.album}</p>

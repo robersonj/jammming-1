@@ -75,8 +75,9 @@ const Spotify = {
               id: item.id,
               title: item.name,
               album: item.album.name,
+              cover: item.album.images[2].url,
               artist: item.artists[0].name,
-              uri: item.uri,
+              uri: item.uri
             }),
           );
         }
