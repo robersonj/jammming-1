@@ -74,6 +74,7 @@ const Spotify = {
             item => ({
               id: item.id,
               title: item.name,
+              preview: item.preview_url,
               album: item.album.name,
               cover: item.album.images[2].url,
               artist: item.artists[0].name,

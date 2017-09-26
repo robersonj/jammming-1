@@ -19,6 +19,22 @@
 .Track-album-cover {
   margin-right: 8px;
   margin-left: -5px;
+  margin-top: 0;
+  opacity: 1;
+  z-index: 0;
+}
+
+.Track-cover-preview:hover img {
+  opacity: .3;
+}
+
+.Track-cover-preview:hover i {
+  visibility: visible;
+}
+
+.Track-cover-preview:hover p {
+  opacity: 1;
+  visibility: visible;
 }
 
 .Track-information {
@@ -27,6 +43,7 @@
   flex-direction: column;
   justify-content: center;
   height: 72px;
+  padding-left: 25px;
 }
 
 .Track-information h3 {
@@ -38,3 +55,36 @@
   font-weight: 300;
   color: rgba(256, 256, 256, 0.8);
 }
+
+.Track-preview-container {
+  position: relative;
+}
+
+.Track-preview-icon {
+  font-size: 30px;
+  opacity: .5;
+  display: block;
+  position: absolute;
+  margin-left: 15px;
+  margin-top: 18px;
+  z-index: 2;
+  visibility: hidden;
+}
+
+.Track-preview-icon:hover {
+  opacity: .9;
+}
+
+.Track-preview-unavailable {
+  font-size: 10px;
+  opacity: 1;
+  display: block;
+  position: absolute;
+  text-align: center;
+  margin-left: 6px;
+  margin-top: 15px;
+  visibility: hidden;
+}
+
+
+
